@@ -35,7 +35,7 @@ int _printf(const char *format, ...)
 			format++;
 		} else if (next == 'c')
 		{
-			pcnt += _putchar(va_arg(op, int));
+			pcnt += _putchar((char)va_arg(op, int));
 			format++;
 		} else if (next == 'd' || next == 'i')
 		{

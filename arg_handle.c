@@ -50,15 +50,9 @@ int _putchar(char c)
 
 int _putstr(char *s)
 {
-	int cnt = 0;
-	
-	while (*s)
-	{
-		write(1, s, 1);
-		s++;
-		cnt++;
-	}
-	return (cnt);
+	if (s == NULL)
+		return (write(1, "(null)",6));
+	return (write(1, s, _strlen(s)));
 }
 
 /**
