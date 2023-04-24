@@ -16,11 +16,6 @@ int _printf(const char *format, ...)
 	va_start(op, format);
 	if (format == NULL)
 		return (-1);
-	if (!is_directive(format))
-	{
-		_puterror("Invalid directive\n");
-		exit(-1);
-	}
 	while (*format)
 	{
 		next = *(format + 1);
