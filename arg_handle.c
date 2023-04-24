@@ -99,16 +99,3 @@ int _puterror(char *s)
 {
 	return (write(2, s, _strlen(s)));
 }
-
-/*
- int _putstr_special(char *s)
-{
-	char *sp_str;
-
-	while (*s)
-	{
-		if ((0 < *s && *s < 32) || *s >= 127)
-			sp_str = 
-	}
-}
-*/
