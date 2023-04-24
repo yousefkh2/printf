@@ -38,6 +38,9 @@ int _printf(const char *format, ...)
 		{
 			pcnt += _putnumber(va_arg(op, int));
 			format++;
+		} else
+		{
+			pcnt += _putchar(*format);
 		}
 
 		format++;
