@@ -50,7 +50,14 @@ int _putchar(char c)
 
 int _putstr(char *s)
 {
-	return (write(1, s, _strlen(s)));
+	int cnt = 0;
+	while (*s)
+	{
+		write(1, s, 1);
+		s++;
+		cnt++;
+	}
+	return (cnt);
 }
 
 /**
