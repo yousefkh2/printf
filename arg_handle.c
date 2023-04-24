@@ -51,7 +51,7 @@ int _putchar(char c)
 int _putstr(char *s)
 {
 	if (s == NULL)
-		return (write(1, "(null)",6));
+		return (write(1, "(null)", 6));
 	return (write(1, s, _strlen(s)));
 }
 
