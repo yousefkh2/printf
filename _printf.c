@@ -1,50 +1,49 @@
 #include "main.h"
 
-/**
- * _printf - print formatted string
- *
- * @format: formatted text
- * Return: (int)
- */
+int (*get_print_func(char c))(va_list)
+{
+    int (*print_functions[])(va_list) = {
+        print_char, print_string, print_percent,
+        print_int, print_decimal
+    };
+    char print_chars[] = {'c', 's', '%', 'd', 'i'};
+    int i;
+
+    for (i = 0; i < 5; i++)
+    {
+        if (c == print_chars[i])
+        {
+            return print_functions[i];
+        }
+    }
+    return NULL;
+}
 
 int _printf(const char *format, ...)
 {
-	int pcnt = 0;
-	va_list op;
-	char next;
+    va_list ap;
+    int count = 0;
+    int (*print_func)(va_list);
 
-	va_start(op, format);
-	if (format == NULL)
-		return (-1);
-	while (*format)
-	{
-		next = *(format + 1);
-		if (*format != '%')
-		{
-			pcnt += _putchar(*format);
-		} else if (next == '%')
-		{
-			pcnt += _putchar(*format);
-			format++;
-		} else if (next == 's')
-		{
-			pcnt += _putstr(va_arg(op, char *));
-			format++;
-		} else if (next == 'c')
-		{
-			pcnt += _putchar((char)va_arg(op, int));
-			format++;
-		} else if (next == 'd' || next == 'i')
-		{
-			pcnt += _putnumber(va_arg(op, int));
-			format++;
-		} else
-		{
-			pcnt += _putchar(*format);
-		}
-
-		format++;
-	}
-	va_end(op);
-	return (pcnt);
+    va_start(ap, format);
+    for (; *format != '\0'; format++)
+    {
+        if (*format == '%')
+        {
+            format++;
+            print_func = get_print_func(*format);
+            if (print_func)
+            {
+                count += print_func(ap);
+            }
+        }
+        else
+        {
+            write(1, format, 1);
+            count++;
+        }
+    }
+    va_end(ap);
+    return count;
 }
+
