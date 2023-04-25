@@ -1,35 +1,6 @@
 #include "main.h"
 
 /**
- * is_directive - check if string has valid directive
- *
- * @s: string to check
- * Return: (int) 1 if directive is valid else 0
- */
-
-int is_directive(const char *s)
-{
-	int is_dir = 1;
-	char spec[] = VALID_SPECIFIER;
-
-	while (*s)
-	{
-		if (*s == '%' && *(s + 1) == '%')
-		{
-			s++;
-		} else if (*s == '%' && !is_char_in_array(*(s + 1), spec))
-		{
-
-			is_dir = 0;
-			break;
-		}
-		s++;
-	}
-
-	return (is_dir);
-}
-
-/**
  * _putchar - print char to stdout
  *
  * @c: char to print
@@ -42,28 +13,50 @@ int _putchar(char c)
 }
 
 /**
+ * print_char - print char to stdout
+ *
+ * @ap: va_list to handle argument
+ * Return: Always (1)
+ */
+
+int print_char(va_list ap)
+{
+	char c = va_arg(ap, int);
+	return (write(1, &c, 1));
+}
+
+/**
  * _putstr - print string to stdout
  *
- * @s: string to print
+ * @ap: va_list to handle argument
  * Return:(int) number of char in string
  */
 
-int _putstr(char *s)
+int print_string(va_list ap)
 {
-	if (s == NULL)
-		return (write(1, "(null)", 6));
-	return (write(1, s, _strlen(s)));
+	char *str = va_arg(ap, char *);
+	int cnt = 0;
+
+	if (str == NULL)
+		return (write(1, "(null)",6));
+	while (*str)
+	{
+		cnt += write(1, str, 1);
+		str++;
+	}
+	return (cnt);
 }
 
 /**
  * _putnumber - print number ot stdout
  *
- * @n: number to print
+ * @ap: va_list to handle argument
  * Return: (int) number of printed numbers
  */
 
-int _putnumber(int n)
+int print_number(va_list ap)
 {
+	int n = va_arg(ap, int);
 	int i = n;
 	int res;
 	int den = 1;
@@ -91,13 +84,16 @@ int _putnumber(int n)
 }
 
 /**
- * _puterror - print string to stderr
+ * _putpercent - print % to stdout
  *
- * @s: string to print
- * Return:(int) number of char in string
+ * @ap: va_list to handle argumet
+ * Retrun: (int) number of printed numbers (1)
  */
 
-int _puterror(char *s)
+int print_percent(va_list ap)
 {
-	return (write(2, s, _strlen(s)));
+	char c = '%';
+
+	UNUSED(ap);
+	return (write(1, &c, 1));
 }

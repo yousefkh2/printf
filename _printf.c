@@ -1,6 +1,34 @@
 #include "main.h"
 
 /**
+ * get_print_func - handle print function
+ *
+ * @c: flag to hundle print func
+ * Return: pointer to appro. print function
+ */
+
+int (*get_print_func(char c))(va_list)
+{
+	int (*print_functions[])(va_list) =
+		{
+			print_char, print_string, print_percent,
+			print_number, print_number
+		};
+	char print_chars[] = {'c', 's', '%', 'd', 'i'};
+	int i = 0;
+
+	while (i < 5)
+	{
+		if (c == print_chars[i])
+		{
+			return (print_functions[i]);
+		}
+		i++;
+	}
+	return (NULL);
+}
+
+/**
  * _printf - print formatted string
  *
  * @format: formatted text
@@ -11,38 +39,25 @@ int _printf(const char *format, ...)
 {
 	int pcnt = 0;
 	va_list op;
-	char next;
+	int (*print_func)(va_list);
 
 	va_start(op, format);
 	if (format == NULL)
 		return (-1);
 	while (*format)
 	{
-		next = *(format + 1);
-		if (*format != '%')
+		if (*format == '%')
 		{
-			pcnt += _putchar(*format);
-		} else if (next == '%')
-		{
-			pcnt += _putchar(*format);
 			format++;
-		} else if (next == 's')
-		{
-			pcnt += _putstr(va_arg(op, char *));
-			format++;
-		} else if (next == 'c')
-		{
-			pcnt += _putchar((char)va_arg(op, int));
-			format++;
-		} else if (next == 'd' || next == 'i')
-		{
-			pcnt += _putnumber(va_arg(op, int));
-			format++;
+			print_func = get_print_func(*format);
+			if (print_func)
+			{
+				pcnt += print_func(op);
+			}
 		} else
 		{
-			pcnt += _putchar(*format);
+			pcnt += write(1, format, 1);
 		}
-
 		format++;
 	}
 	va_end(op);
