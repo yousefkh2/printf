@@ -22,11 +22,12 @@ int _putchar(char c)
 int print_char(va_list ap)
 {
 	char c = va_arg(ap, int);
+
 	return (write(1, &c, 1));
 }
 
 /**
- * _putstr - print string to stdout
+ * print_string - print string to stdout
  *
  * @ap: va_list to handle argument
  * Return:(int) number of char in string
@@ -38,7 +39,7 @@ int print_string(va_list ap)
 	int cnt = 0;
 
 	if (str == NULL)
-		return (write(1, "(null)",6));
+		return (write(1, "(null)", 6));
 	while (*str)
 	{
 		cnt += write(1, str, 1);
@@ -48,7 +49,7 @@ int print_string(va_list ap)
 }
 
 /**
- * _putnumber - print number ot stdout
+ * print_number - print number ot stdout
  *
  * @ap: va_list to handle argument
  * Return: (int) number of printed numbers
@@ -84,10 +85,10 @@ int print_number(va_list ap)
 }
 
 /**
- * _putpercent - print % to stdout
+ * print_percent - print % to stdout
  *
  * @ap: va_list to handle argumet
- * Retrun: (int) number of printed numbers (1)
+ * Return: (int) number of printed numbers (1)
  */
 
 int print_percent(va_list ap)

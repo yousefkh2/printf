@@ -9,11 +9,10 @@
 
 int (*get_print_func(char c))(va_list)
 {
-	int (*print_functions[])(va_list) =
-		{
+	int (*print_functions[])(va_list) = {
 			print_char, print_string, print_percent,
 			print_number, print_number
-		};
+	};
 	char print_chars[] = {'c', 's', '%', 'd', 'i'};
 	int i = 0;
 
@@ -46,14 +45,12 @@ int _printf(const char *format, ...)
 		return (-1);
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format == '%' && get_print_func(*(format + 1)))
 		{
 			format++;
 			print_func = get_print_func(*format);
 			if (print_func)
-			{
 				pcnt += print_func(op);
-			}
 		} else
 		{
 			pcnt += write(1, format, 1);
