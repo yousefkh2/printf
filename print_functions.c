@@ -1,5 +1,16 @@
 #include "main.h"
-#include <unistd.h>
+
+/**
+ * _putchar - print char to stdout
+ *
+ * @c: char to print
+ * Return: Always (1)
+ */
+
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
 
 /**
  * print_char - prints a character
@@ -34,13 +45,18 @@ int print_string(va_list ap)
 }
 
 /**
- * print_percent - prints a percent sign
- * Return: number of characters printed
+ * print_percent - print % to stdout
+ *
+ * @ap: va_list to handle argumet
+ * Return: (int) number of printed numbers (1)
  */
-int print_percent(void)
+
+int print_percent(va_list ap)
 {
-    write(1, "%", 1);
-    return (1);
+	char c = '%';
+
+	UNUSED(ap);
+	return (write(1, &c, 1));
 }
 
 /**
