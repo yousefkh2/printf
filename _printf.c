@@ -14,12 +14,14 @@ int (*get_print_func(char c))(va_list)
 {
 	int (*print_functions[])(va_list) = {
 			print_char, print_string, print_percent,
-			print_int, print_int
+			print_int, print_int, print_binary, print_unsigned,
+			print_octal, print_hex, print_HEX
 	};
-	char print_chars[] = {'c', 's', '%', 'd', 'i'};
+	char print_chars[] = {'c', 's', '%', 'd', 'i', 'b', 'u', 'o',
+			      'x', 'X'};
 	int i = 0;
 
-	while (i < 5)
+	while (i < 10)
 	{
 		if (c == print_chars[i])
 		{
