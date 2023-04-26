@@ -82,4 +82,3 @@ int print_HEX(va_list ap)
 		return (write(1, "0", 1));
 	return (write(1, rep_num, _strlen(rep_num)));
 }
-

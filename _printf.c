@@ -55,19 +55,23 @@ int _printf(const char *format, ...)
 
     va_start(op, format);
     if (format == NULL)
-        return (-1);
+	    return (-1);
     while (*format)
     {
-        if (*format == '%' && get_print_func(*(format + 1)))
+        if (*format == '%')
         {
-            format++;
-            print_func = get_print_func(*format);
-            if (print_func)
-                pcnt += print_func(op);
+		if (!*(format + 1))
+			break;
+		print_func = get_print_func(*(format + 1));
+		if (print_func)
+			pcnt += print_func(op);
+		else
+			pcnt += write(1, format, 2);
+		format++;
         }
         else
         {
-            pcnt += write(1, format, 1);
+		pcnt += write(1, format, 1);
         }
         format++;
     }

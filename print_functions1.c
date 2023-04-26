@@ -57,30 +57,10 @@ int print_percent(va_list ap)
 int print_int(va_list ap)
 {
 	int n = va_arg(ap, int);
-	int i = n;
-	int res;
-	int den = 1;
-	int cnt = 0;
+	int len = int_len(n);
 
-	if (n < 0)
-	{
-		n = -n;
-		i = n;
-		cnt += _putchar('-');
-	}
-	while (i > 9)
-	{
-		den *= 10;
-		i /= 10;
-	}
-	while (den >= 1)
-	{
-		res = n / den;
-		n -= res * den;
-		den /= 10;
-		cnt += _putchar(res + '0');
-	}
-	return (cnt);
+	write(1, int_to_str(n), len);
+	return (len);
 }
 
 /**
