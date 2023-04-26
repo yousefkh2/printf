@@ -98,3 +98,4 @@ int print_binary(va_list ap)
 		return (write(1, "0", 1));
 	return (write(1, rep_num, _strlen(rep_num)));
 }
+
