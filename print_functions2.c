@@ -10,7 +10,7 @@ int print_unsigned(va_list ap)
 {
 	unsigned int n = va_arg(ap, unsigned int);
 	unsigned int i = n;
-	int res;
+	int res = 0;
 	int den = 1;
 	int cnt = 0;
 
@@ -51,6 +51,7 @@ int print_octal(va_list ap)
  *
  * Return: count of printed numbers
  */
+
 int print_hex(va_list ap)
 {
 	unsigned int num = va_arg(ap, unsigned int);
@@ -109,54 +110,5 @@ int print_special(va_list ap)
 			cnt += write(1, str, 1);
 		str++;
 	}
-	return (cnt);
-}
-
-/**
- * print_reverse - print string in reverse order
- *
- * @ap: list of arguments
- * Return: number of printed chars
- */
-
-int print_reverse(va_list ap)
-{
-	char *str = va_arg(ap, char *);
-
-	int i;
-	int len = _strlen(str);
-	int cnt = 0;
-
-	for (i = len - 1 ; i >= 0; i--)
-	{
-		cnt += _putchar(str[i]);
-	}
-	return (cnt);
-}
-
-/**
- * print_address - print address of argument
- *
- * @ap: list of arguments
- * Return: number of printed chars
- */
-
-int print_address(va_list ap)
-{
-	void *ptr = va_arg(ap, void *);
-	unsigned long int n = (unsigned long int) ptr;
-	char *str_num;
-	int cnt = 0;
-	int i = 0;
-
-	str_num = int_to(n, 16);
-	cnt += write(1, "0x", 2);
-	while (*(str_num + i))
-	{
-		str_num[i] = tolower(str_num[i]);
-		i++;
-	}
-	cnt += write(1, str_num, _strlen(str_num));
-
 	return (cnt);
 }

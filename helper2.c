@@ -25,7 +25,6 @@ int int_len(long int n)
  * int_to_str - convert number to string
  *
  * @n: number to convert
- * @str: array to store chars
  * Return: pointer to converted number as array
  */
 
