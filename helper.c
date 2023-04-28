@@ -29,7 +29,7 @@ int _strlen(const char *s)
  * Return: (unsigned int) number of bytes
  */
 
-unsigned int num_bytes(unsigned int n, int base)
+unsigned int num_bytes(unsigned long int n, int base)
 {
 	unsigned int num = 0;
 
@@ -51,7 +51,8 @@ unsigned int num_bytes(unsigned int n, int base)
  * Return: char for given remainder
  */
 
-char get_rem_as_char(int arr_rem[], char assoc[], int rem,  int size)
+char get_rem_as_char(int arr_rem[], char assoc[], int rem,
+		     int size)
 {
 	int i = 0;
 
@@ -72,7 +73,7 @@ char get_rem_as_char(int arr_rem[], char assoc[], int rem,  int size)
  * Return: (int) represent converted integer
  */
 
-char *int_to(unsigned int n, int base)
+char *int_to(unsigned long int n, int base)
 {
 
 	unsigned int n_bytes = num_bytes(n, base);

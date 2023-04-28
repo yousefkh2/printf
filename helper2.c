@@ -7,7 +7,7 @@
  * Return: (int) length of integer
  */
 
-int int_len(int n)
+int int_len(long int n)
 {
 	int len = 0;
 
@@ -20,6 +20,7 @@ int int_len(int n)
 	}
 	return (len);
 }
+
 /**
  * int_to_str - convert number to string
  *
