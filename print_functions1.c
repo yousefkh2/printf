@@ -58,8 +58,11 @@ int print_int(va_list ap)
 {
 	int n = va_arg(ap, int);
 	int len = int_len(n);
+	char *str = int_to_str(n);
 
-	write(1, int_to_str(n), len);
+	write(1, str, len);
+	free(str);
+
 	return (len);
 }
 
