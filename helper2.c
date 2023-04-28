@@ -56,3 +56,25 @@ char *int_to_str(int n)
 	str[len] = '\0';
 	return (str);
 }
+
+/**
+ * get_13rot - move char by 13
+ *
+ * @c: char to move
+ * Return: new char after be moved
+ */
+
+char get_13rot(char c)
+{
+	if (!((c >= 65 && c <= 90) || (c >= 97 && c <= 122)))
+		return (c);
+
+	if (c <= 90 && (c + 13) > 90)
+		return (c - 13);
+	else if (c < 90)
+		return (c + 13);
+	else if (c <= 122 && (c + 13) > 122)
+		return (c - 13);
+	else
+		return (c + 13);
+}

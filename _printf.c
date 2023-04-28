@@ -14,10 +14,10 @@ int (*get_print_func(char c))(va_list)
 	};
 	int (*print_functions2[])(va_list) = {
 		print_unsigned_int, print_octal, print_hex, print_HEX,
-		print_reverse, print_special, print_address
+		print_reverse, print_special, print_address, print_13rot
 	};
 	char print_chars1[] = {'c', 's', '%', 'd', 'i', 'b'};
-	char print_chars2[] = {'u', 'o', 'x', 'X', 'r', 'S', 'p'};
+	char print_chars2[] = {'u', 'o', 'x', 'X', 'r', 'S', 'p', 'R'};
 	int i = 0;
 
 	while (i < 6)
@@ -30,7 +30,7 @@ int (*get_print_func(char c))(va_list)
 	}
 
 	i = 0;
-	while (i < 7)
+	while (i < 8)
 	{
 		if (c == print_chars2[i])
 		{

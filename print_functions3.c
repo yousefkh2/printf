@@ -55,3 +55,25 @@ int print_address(va_list ap)
 
 	return (cnt);
 }
+
+/**
+ * print_13rot - move string chars by 13
+ *
+ * @ap: arguments list
+ * Return: number of printd chars
+ */
+
+int print_13rot(va_list ap)
+{
+	char *str = va_arg(ap, char *);
+	char cur;
+	int cnt = 0;
+
+	while (*str)
+	{
+		cur = get_13rot(*str);
+		cnt += write(1, &cur, 1);
+		str++;
+	}
+	return (cnt);
+}

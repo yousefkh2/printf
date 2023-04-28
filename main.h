@@ -35,4 +35,7 @@ int print_reverse(va_list ap);
 int print_special(va_list ap);
 int print_address(va_list ap);
 
+char get_13rot(char c);
+int print_13rot(va_list);
+
 #endif /* MAIN_H */
