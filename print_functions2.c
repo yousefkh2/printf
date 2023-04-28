@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * print_unsigned - print unsigned integer
+ * print_unsigned_int - print unsigned integer
  * @ap: list of arguments
  *
  * Return: count of printed numbers
  */
-int print_unsigned(va_list ap)
+int print_unsigned_int(va_list ap)
 {
 	unsigned int n = va_arg(ap, unsigned int);
 	unsigned int i = n;

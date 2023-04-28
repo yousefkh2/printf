@@ -13,7 +13,7 @@ int (*get_print_func(char c))(va_list)
 		print_int, print_int, print_binary
 	};
 	int (*print_functions2[])(va_list) = {
-		print_unsigned, print_octal, print_hex, print_HEX,
+		print_unsigned_int, print_octal, print_hex, print_HEX,
 		print_reverse, print_special, print_address
 	};
 	char print_chars1[] = {'c', 's', '%', 'd', 'i', 'b'};

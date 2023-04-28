@@ -37,6 +37,13 @@ int print_address(va_list ap)
 	int cnt = 0;
 	int i = 0;
 
+
+	if (ptr == NULL)
+	{
+		cnt += write(1, "(nil)", 5);
+		return (cnt);
+	}
+
 	str_num = int_to(n, 16);
 	cnt += write(1, "0x", 2);
 	while (*(str_num + i))
