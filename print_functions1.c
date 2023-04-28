@@ -10,8 +10,7 @@ int print_char(va_list ap)
 {
 	char c = va_arg(ap, int);
 
-	write(1, &c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }
 
 /**
@@ -61,8 +60,8 @@ int print_int(va_list ap)
 	char *str = int_to_str(n);
 
 	write(1, str, len);
-	free(str);
 
+	free(str);
 	return (len);
 }
 
@@ -76,9 +75,11 @@ int print_binary(va_list ap)
 {
 	unsigned int num = va_arg(ap, unsigned int);
 	char *rep_num = int_to(num, 2);
+	int cnt = 0;
 
 	if (!num)
 		return (write(1, "0", 1));
-	return (write(1, rep_num, _strlen(rep_num)));
-}
 
+	cnt += write(1, rep_num, _strlen(rep_num));
+	return (cnt);
+}

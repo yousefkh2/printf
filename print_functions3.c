@@ -53,6 +53,7 @@ int print_address(va_list ap)
 	}
 	cnt += write(1, str_num, _strlen(str_num));
 
+	free(str_num);
 	return (cnt);
 }
 

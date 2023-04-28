@@ -39,10 +39,14 @@ int print_octal(va_list ap)
 {
 	unsigned int num = va_arg(ap, int);
 	char *rep_num = int_to(num, 8);
+	int cnt = 0;
 
 	if (!num)
 		return (write(1, "0", 1));
-	return (write(1, rep_num, _strlen(rep_num)));
+	cnt += write(1, rep_num, _strlen(rep_num));
+
+	free(rep_num);
+	return (cnt);
 }
 
 /**
@@ -57,6 +61,7 @@ int print_hex(va_list ap)
 	unsigned int num = va_arg(ap, unsigned int);
 	char *rep_num = int_to(num, 16);
 	int i = 0;
+	int cnt = 0;
 
 	if (!num)
 		return (write(1, "0", 1));
@@ -65,7 +70,11 @@ int print_hex(va_list ap)
 		rep_num[i] = tolower(rep_num[i]);
 		i++;
 	}
-	return (write(1, rep_num, _strlen(rep_num)));
+
+	cnt += write(1, rep_num, _strlen(rep_num));
+
+	free(rep_num);
+	return (cnt);
 }
 
 /**
@@ -78,10 +87,14 @@ int print_HEX(va_list ap)
 {
 	unsigned int num = va_arg(ap, unsigned int);
 	char *rep_num = int_to(num, 16);
+	int cnt = 0;
 
 	if (!num)
 		return (write(1, "0", 1));
-	return (write(1, rep_num, _strlen(rep_num)));
+	cnt += write(1, rep_num, _strlen(rep_num));
+
+	free(rep_num);
+	return (cnt);
 }
 
 /**
@@ -106,6 +119,7 @@ int print_special(va_list ap)
 			if (_strlen(tmp) < 2)
 				cnt += write(1, "0", 1);
 			cnt += write(1, tmp, _strlen(tmp));
+			free(tmp);
 		} else
 			cnt += write(1, str, 1);
 		str++;
